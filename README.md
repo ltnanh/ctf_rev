@@ -1,2 +1,2 @@
 # ctf_rev
-reverse engineering ctf challenge from dich , ctf webs 
+reverse engineering ctf challenge from competitions, ctf webs 
