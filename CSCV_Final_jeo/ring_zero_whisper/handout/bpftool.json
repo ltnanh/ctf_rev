@@ -1,0 +1,24 @@
+{
+  "programs": [
+    {
+      "id": 41,
+      "map_ids": [
+        7
+      ],
+      "tail_call": 42
+    },
+    {
+      "id": 42,
+      "map_ids": [
+        7
+      ],
+      "tail_call": null
+    }
+  ],
+  "maps": [
+    {
+      "id": 7,
+      "name": "map_7"
+    }
+  ]
+}

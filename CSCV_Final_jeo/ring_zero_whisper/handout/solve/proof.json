@@ -1,0 +1,16 @@
+{
+  "attach_points": [
+    "tracepoint/process-exec",
+    "hook/socket-send"
+  ],
+  "map_ids": [
+    7
+  ],
+  "parent_hash": "ab77fe24675b6427",
+  "prog_chain": [
+    41,
+    42
+  ],
+  "session_bit": 1,
+  "uid": 1001
+}

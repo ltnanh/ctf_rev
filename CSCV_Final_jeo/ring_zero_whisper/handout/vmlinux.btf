@@ -1,0 +1,72 @@
+# BTF dump (raw) tự object eBPF — clang/LLVM 18
+# LƯU Ý: tại object level, BTF DATASEC `.rodata`/`.data` có size=0 và var `offset` luôn bằng 0
+# cho global (const hay non-const, mọi mức -O) — chỉ ____fmt string literal có offset thật.
+# OFFset tin cậy của `.rodata` nằm ở ELF symbol table (`st_value` = offset trong section),
+# xem `readelf -s` + `readelf -x .rodata`. Dòng `offset=` dưới đây phản ánh raw BTF
+# (có thể là 0), KHÔNG phải nguồn trung thực cho vị trí biến.
+
+[1] PTR ''(anon)'' type_id=3
+[2] INT 'int' size=4 bits_offset=32 nr_bits=0 encoding=SIGNED
+[3] ARRAY ''(anon)'' type_id=2 index_type_id=4 nr_elems=3
+[4] INT '__ARRAY_SIZE_TYPE__' size=4 bits_offset=32 nr_bits=0 encoding=(none)
+[5] PTR ''(anon)'' type_id=6
+[6] ARRAY ''(anon)'' type_id=2 index_type_id=4 nr_elems=2
+[7] PTR ''(anon)'' type_id=8
+[8] ARRAY ''(anon)'' type_id=2 index_type_id=4 nr_elems=4
+[9] STRUCT ''(anon)'' size=32 vlen=4
+	type type_id=1 bits_offset=0
+	max_entries type_id=5 bits_offset=64
+	key_size type_id=7 bits_offset=128
+	value_size type_id=7 bits_offset=192
+[10] VAR 'prog_arr' type_id=9 linkage=1 (global-alloc)
+[11] PTR ''(anon)'' type_id=12
+[12] ARRAY ''(anon)'' type_id=2 index_type_id=4 nr_elems=1
+[13] PTR ''(anon)'' type_id=14
+[14] ARRAY ''(anon)'' type_id=2 index_type_id=4 nr_elems=8
+[15] STRUCT ''(anon)'' size=32 vlen=4
+	type type_id=11 bits_offset=0
+	max_entries type_id=11 bits_offset=64
+	key_size type_id=7 bits_offset=128
+	value_size type_id=13 bits_offset=192
+[16] VAR 'rz_map' type_id=15 linkage=1 (global-alloc)
+[17] PTR ''(anon)'' type_id=0
+[18] FUNC_PROTO ''(anon)'' ret_type_id=2 vlen=1
+	ctx type_id=17
+[19] FUNC 'rz_first' type_id=18
+[20] FUNC_PROTO ''(anon)'' ret_type_id=2 vlen=1
+	ctx type_id=17
+[21] FUNC 'rz_second' type_id=20
+[22] CONST ''(anon)'' type_id=23
+[23] STRUCT 'rz_sel' size=8 vlen=2
+	uid type_id=24 bits_offset=0
+	session_bit type_id=26 bits_offset=32
+[24] TYPEDEF '__u32' type_id=25
+[25] INT 'unsigned int' size=4 bits_offset=32 nr_bits=0 encoding=(none)
+[26] TYPEDEF '__u8' type_id=27
+[27] INT 'unsigned char' size=1 bits_offset=8 nr_bits=0 encoding=(none)
+[28] VAR 'sel' type_id=22 linkage=1 (global-alloc)
+[29] CONST ''(anon)'' type_id=27
+[30] ARRAY ''(anon)'' type_id=29 index_type_id=4 nr_elems=8
+[31] VAR 'parent_hash' type_id=30 linkage=1 (global-alloc)
+[32] CONST ''(anon)'' type_id=33
+[33] INT 'char' size=1 bits_offset=8 nr_bits=0 encoding=SIGNED
+[34] ARRAY ''(anon)'' type_id=32 index_type_id=4 nr_elems=24
+[35] ARRAY ''(anon)'' type_id=34 index_type_id=4 nr_elems=2
+[36] VAR 'attach_points' type_id=35 linkage=1 (global-alloc)
+[37] ARRAY ''(anon)'' type_id=32 index_type_id=4 nr_elems=18
+[38] VAR 'rz_first.____fmt' type_id=37 linkage=0 (static)
+[39] ARRAY ''(anon)'' type_id=32 index_type_id=4 nr_elems=27
+[40] VAR 'rz_second.____fmt' type_id=39 linkage=0 (static)
+[41] ARRAY ''(anon)'' type_id=33 index_type_id=4 nr_elems=4
+[42] VAR 'LICENSE' type_id=41 linkage=1 (global-alloc)
+[43] DATASEC '.maps' size=0 vlen=2
+	type_id=10 offset=0 size=32 VAR 'prog_arr'
+	type_id=16 offset=0 size=32 VAR 'rz_map'
+[44] DATASEC '.rodata' size=0 vlen=5
+	type_id=28 offset=0 size=8 VAR 'sel'
+	type_id=31 offset=0 size=8 VAR 'parent_hash'
+	type_id=36 offset=0 size=48 VAR 'attach_points'
+	type_id=38 offset=64 size=18 VAR 'rz_first.____fmt'
+	type_id=40 offset=82 size=27 VAR 'rz_second.____fmt'
+[45] DATASEC 'license' size=0 vlen=1
+	type_id=42 offset=0 size=4 VAR 'LICENSE'

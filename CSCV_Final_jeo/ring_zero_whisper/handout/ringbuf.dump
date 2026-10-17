@@ -1,0 +1,6 @@
+# CSCV2026 synthetic handout
+# challenge=REV-02
+# file=ringbuf.dump
+fragment_count=4
+parity=xor
+
